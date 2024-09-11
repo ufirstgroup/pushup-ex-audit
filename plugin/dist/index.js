@@ -1,4 +1,4 @@
-import { createRunnerConfig } from './lib';
+import { createRunnerConfig } from './lib/index.js';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { auditsMeta } from './lib/meta/audits';
