@@ -13,7 +13,8 @@
   "name": "ufirst-plugins",
   "version": "1.0.0",
   "description": "Ufirst Plugins for CodePushup",
-  "main": "index.js",
+  "main": "plugin/dist/index.js",
+  "types": "plugin/dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
