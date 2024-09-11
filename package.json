@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "@code-pushup/cli": "^0.49.0",
+    "@code-pushup/models": "^0.49.0",
+    "vscode-material-icons": "^0.1.1"
+  },
+  "devDependencies": {
+    "@swc/cli": "^0.4.0",
+    "@swc/core": "^1.7.23",
+    "@types/node": "^22.5.2",
+    "typescript": "^5.5.4"
+  },
+  "name": "ufirst-plugins",
+  "version": "1.0.0",
+  "description": "Ufirst Plugins for CodePushup",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "module"
+}
