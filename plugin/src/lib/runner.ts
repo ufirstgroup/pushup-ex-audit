@@ -1,4 +1,4 @@
-import { AuditDetails, AuditOutput, AuditOutputs } from "@code-pushup/models";
+import { AuditOutput, AuditOutputs } from "@code-pushup/models";
 import { auditsMeta } from "./meta/audits.js";
 import {
 	ensureDirectoryExists,

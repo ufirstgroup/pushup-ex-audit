@@ -2,7 +2,7 @@ import { PluginConfig, PluginMeta } from '@code-pushup/models';
 import {createRunnerConfig} from './lib/index.js';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { auditsMeta } from './lib/meta/audits';
+import { auditsMeta } from './lib/meta/audits.js';
 import { ElixirAuditPluginOptions } from './types/index.js';
 
 export const pluginMeta: PluginMeta = {
