@@ -13,6 +13,9 @@ export async function executeRunner() {
             cwd: projectPath,
             ignoreExitCode: false
         });
+        if (typeof stdout !== 'object') {
+            stdout = JSON.parse(stdout);
+        }
         const resp = transformMixAuditOutput(stdout);
         await writeFile(RUNNER_OUTPUT_PATH, JSON.stringify(resp));
     }
