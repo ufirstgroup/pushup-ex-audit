@@ -6,20 +6,19 @@ import { writeFile } from "fs/promises";
 export async function executeRunner() {
     await ensureDirectoryExists(dirname(RUNNER_OUTPUT_PATH));
     const projectPath = await readJsonFile(PLUGIN_CONFIG_PATH);
-    let { stdout, stderr } = await executeProcess({
-        command: 'mix deps.audit',
-        args: ['--format=json'],
-        cwd: projectPath,
-        ignoreExitCode: false
-    });
-    if (stderr) {
-        throw new Error(`Elixir audit plugin error: ${stderr}`);
+    try {
+        let { stdout, stderr } = await executeProcess({
+            command: 'mix deps.audit',
+            args: ['--format=json'],
+            cwd: projectPath,
+            ignoreExitCode: false
+        });
+        const resp = transformMixAuditOutput(stdout);
+        await writeFile(RUNNER_OUTPUT_PATH, JSON.stringify(resp));
     }
-    if (typeof stdout !== 'object') {
-        stdout = JSON.parse(stdout);
+    catch (err) {
+        throw new Error(`Elixir audit plugin error: ${err}`);
     }
-    const resp = transformMixAuditOutput(stdout);
-    await writeFile(RUNNER_OUTPUT_PATH, JSON.stringify(resp));
 }
 function transformMixAuditOutput(output) {
     console.log(output);
