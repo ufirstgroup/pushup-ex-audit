@@ -21,11 +21,16 @@ export async function executeRunner(): Promise<void>{
 		cwd: projectPath,
 		ignoreExitCode: false
 	})
+	if (typeof stdout !== 'object'){
+		stdout = JSON.parse(stdout);
+	}
+	
 	const resp = transformMixAuditOutput(stdout as any);
 	await writeFile(RUNNER_OUTPUT_PATH, JSON.stringify(resp));
 	}catch(err){
 		throw new Error(`Elixir audit plugin error: ${err}`)
 	}
+
 }
 
 function transformMixAuditOutput(output: MixAuditResultType): AuditOutputs{
