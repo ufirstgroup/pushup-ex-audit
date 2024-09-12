@@ -13,24 +13,19 @@ import { MixAuditResultType } from "../types/audit.result.type.js";
 export async function executeRunner(): Promise<void>{
 	await ensureDirectoryExists(dirname(RUNNER_OUTPUT_PATH));
 	const projectPath = await readJsonFile<string>(PLUGIN_CONFIG_PATH);
-	let {stdout, stderr} = await executeProcess({
+	
+	try{
+		let {stdout, stderr} = await executeProcess({
 		command: 'mix deps.audit',
 		args: ['--format=json'],
 		cwd: projectPath,
 		ignoreExitCode: false
 	})
-
-	if (stderr) {
-		throw new Error(`Elixir audit plugin error: ${stderr}`)
-	}
-
-	if (typeof stdout !== 'object'){
-		stdout = JSON.parse(stdout);
-	}
-	
 	const resp = transformMixAuditOutput(stdout as any);
 	await writeFile(RUNNER_OUTPUT_PATH, JSON.stringify(resp));
-
+	}catch(err){
+		throw new Error(`Elixir audit plugin error: ${err}`)
+	}
 }
 
 function transformMixAuditOutput(output: MixAuditResultType): AuditOutputs{
