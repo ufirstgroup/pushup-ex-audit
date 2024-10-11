@@ -22,7 +22,7 @@ jobs:
 
     - name: Build TypeScript
       run: |
-        cd plugin
+        cd elixir/plugin
         npx tsc
 
     - name: Commit and push changes
