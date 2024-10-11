@@ -2,7 +2,7 @@ variables:
   DOCKERFILE_PATH: $CI_PROJECT_DIR/docker/Dockerfile.javascript
   DESTINATION_IMAGE: $CI_REGISTRY_IMAGE/code-pushup-javascript:latest
 
-.build_docker_images:
+build_docker:
   stage: build
   image:
     name: gcr.io/kaniko-project/executor:v1.23.2-debug
