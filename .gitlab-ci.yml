@@ -1,6 +1,7 @@
 ---
 include:
   - local: .gitlab/.gitlab-ci.javascript.docker.yml
+  - local: .gitlab/.gitlab-ci.base.docker.yml
 
 
 stages:
