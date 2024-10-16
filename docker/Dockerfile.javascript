@@ -1,6 +1,5 @@
-FROM node:20-bullseye
+FROM registry.gitlab.com/ufirstgroup/ufg/code-pushup-plugins/code-pushup-base:latest
 
-ENV NODE_PATH=/usr/local/lib/node_modules/
 ENV CUSTOM_CHROME_PATH=/usr/bin/chromium
 
 RUN apt-get update && apt-get install curl gnupg -y \
@@ -26,16 +25,6 @@ RUN npm install -g "eslint@8.57.0" \
   "eslint-plugin-fp@2.3.0" \
   "eslint-plugin-prefer-arrow@1.2.3" \
   "eslint-import-resolver-typescript-bun@0.0.104"
-
-RUN npm install -g \
-  "@code-pushup/coverage-plugin@^0.49.0" \
-  "@code-pushup/js-packages-plugin@^0.49.0" \
-  "@code-pushup/lighthouse-plugin@^0.49.0" \
-  "@code-pushup/models@^0.49.0" \
-  "@code-pushup/eslint-config@^0.8.0" \
-  "@code-pushup/eslint-plugin@^0.50.0"
-
-RUN npm install -g "@code-pushup/cli@^0.50.0"
 
 
 WORKDIR /app
