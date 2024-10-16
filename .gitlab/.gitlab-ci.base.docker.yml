@@ -1,6 +1,6 @@
 variables:
-  DOCKERFILE_PATH: $CI_PROJECT_DIR/docker/Dockerfile.javascript
-  DESTINATION_IMAGE: $CI_REGISTRY_IMAGE/code-pushup-javascript:latest
+  DOCKERFILE_PATH: $CI_PROJECT_DIR/docker/Dockerfile.base
+  DESTINATION_IMAGE: $CI_REGISTRY_IMAGE/code-pushup-base:latest
 
 build_docker_javascript:
   stage: build
