@@ -1,4 +1,4 @@
-FROM node:20-bullseye
+FROM registry.gitlab.com/ufirstgroup/ufg/code-pushup-plugins/code-pushup-base:latest
 
 ENV NODE_PATH=/usr/local/lib/node_modules/
 
@@ -10,3 +10,15 @@ RUN npm install -g \
   "@code-pushup/eslint-config@^0.8.0" \
   "@code-pushup/eslint-plugin@^0.50.0"
 RUN npm install -g "@code-pushup/cli@^0.50.0"
+
+RUN apt-get update && apt-get install -y --no-install-recommends curl git; \
+	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.1; \
+	/bin/bash -c 'echo -e "\n\n## Configure ASDF \n. $HOME/.asdf/asdf.sh" >> ~/.bashrc'; \
+    /bin/bash -c 'echo -e "\n\n## ASDF Bash Completion: \n. $HOME/.asdf/completions/asdf.bash" >> ~/.bashrc'; \
+    exec bash; \
+	asdf plugin add erlang; \
+	asdf plugin add elixir; \
+	asdf install erlang 26.1.2;\
+	asdf install elixir 1.16.2 \
+	asdf global erlang 26.1.2; \
+	asdf global elixir 1.16.2; 
