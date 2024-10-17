@@ -10,7 +10,7 @@
     "@types/node": "^22.5.2",
     "typescript": "^5.5.4"
   },
-  "name": "ufirst-plugins",
+  "name": "pushup-ex-audit",
   "version": "1.0.0",
   "description": "Ufirst Plugins for CodePushup",
   "main": "plugin/dist/index.js",
