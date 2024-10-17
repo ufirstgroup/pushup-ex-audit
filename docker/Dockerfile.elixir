@@ -11,6 +11,22 @@ RUN npm install -g \
   "@code-pushup/eslint-plugin@^0.50.0"
 RUN npm install -g "@code-pushup/cli@^0.50.0"
 RUN npm i -g "https://github.com/ufirstgroup/pushup-ex-audit#master"
+RUN npm install -g "eslint@8.57.0" \
+  "@typescript-eslint/eslint-plugin@7.18.0" \
+  "@typescript-eslint/parser@7.18.0" \ 
+  "eslint-plugin-functional@^6.0.0" \
+  "eslint-plugin-import@2.29.0" \
+  "eslint-plugin-promise@^6.1.1" \
+  "eslint-plugin-sonarjs@^0.22.0" \ 
+  "eslint-plugin-unicorn@55.0.0" \
+  "vscode-material-icons@0.1.1" \
+  "eslint-config-airbnb@19.0.4" \
+  "eslint-config-next@14.2.3" \
+  "eslint-config-prettier@9.1.0" \ 
+  "eslint-plugin-storybook@0.8.0" \ 
+  "eslint-plugin-fp@2.3.0" \
+  "eslint-plugin-prefer-arrow@1.2.3" \
+  "eslint-import-resolver-typescript-bun@0.0.104"
 
 RUN apt-get update && apt-get install -y --no-install-recommends curl git build-essential \
 	autoconf m4 libncurses5-dev libwxgtk3.2-dev libwxgtk-webview3.2-dev libgl1-mesa-dev \
