@@ -11,7 +11,10 @@ RUN npm install -g \
   "@code-pushup/eslint-plugin@^0.50.0"
 RUN npm install -g "@code-pushup/cli@^0.50.0"
 
-RUN apt-get update && apt-get install -y --no-install-recommends curl git; \
+RUN apt-get update && apt-get install -y --no-install-recommends curl git build-essential \
+	autoconf m4 libncurses5-dev libwxgtk3.2-dev libwxgtk-webview3.2-dev libgl1-mesa-dev \
+	libglu1-mesa-dev libpng-dev libssh-dev unixodbc-dev xsltproc fop libxml2-utils libncurses-dev \
+	openjdk-11-jdk; \
 	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.1; 
 # 	/bin/bash -c 'echo -e "\n\n## Configure ASDF \n. $HOME/.asdf/asdf.sh" >> ~/.bashrc'; \
 #     /bin/bash -c 'echo -e "\n\n## ASDF Bash Completion: \n. $HOME/.asdf/completions/asdf.bash" >> ~/.bashrc';
@@ -27,6 +30,6 @@ ENV PATH=$PATH:/root/.asdf/shims
 RUN asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git; \
 	asdf plugin add elixir; \
 	asdf install erlang 26.1.2;\
-	asdf install elixir 1.16.2 \
+	asdf install elixir 1.16.2; \
 	asdf global erlang 26.1.2; \
 	asdf global elixir 1.16.2; 
