@@ -1,4 +1,4 @@
-build_docker_javascript:
+build_docker_elixir:
   stage: build
   variables: 
     DOCKERFILE_PATH: $CI_PROJECT_DIR/docker/Dockerfile.elixir
