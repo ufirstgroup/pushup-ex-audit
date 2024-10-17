@@ -17,12 +17,11 @@ jobs:
 
     - name: Install dependencies
       run: |
-        cd elixir
         npm ci
 
     - name: Build TypeScript
       run: |
-        cd elixir/plugin
+        cd plugin
         npx tsc
 
     - name: Commit and push changes
