@@ -12,11 +12,17 @@ RUN npm install -g \
 RUN npm install -g "@code-pushup/cli@^0.50.0"
 
 RUN apt-get update && apt-get install -y --no-install-recommends curl git; \
-	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.1; \
-	/bin/bash -c 'echo -e "\n\n## Configure ASDF \n. $HOME/.asdf/asdf.sh" >> ~/.bashrc'; \
-    /bin/bash -c 'echo -e "\n\n## ASDF Bash Completion: \n. $HOME/.asdf/completions/asdf.bash" >> ~/.bashrc';
+	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.1; 
+# 	/bin/bash -c 'echo -e "\n\n## Configure ASDF \n. $HOME/.asdf/asdf.sh" >> ~/.bashrc'; \
+#     /bin/bash -c 'echo -e "\n\n## ASDF Bash Completion: \n. $HOME/.asdf/completions/asdf.bash" >> ~/.bashrc';
 	
-SHELL ["/bin/bash", "-c"]
+# SHELL ["/bin/bash", "-c"]
+
+# Add asdf to PATH, so it can be run in this Dockerfile
+ENV PATH="$PATH:/root/.asdf/bin"
+
+# Add asdf shims to PATH, so installed executables can be run in this Dockerfile
+ENV PATH=$PATH:/root/.asdf/shims
 	
 RUN source ~/.bashrc \
 	asdf plugin add erlang; \
