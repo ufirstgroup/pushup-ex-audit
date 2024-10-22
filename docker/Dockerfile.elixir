@@ -1,15 +1,5 @@
 FROM registry.gitlab.com/ufirstgroup/ufg/code-pushup-plugins/code-pushup-base:latest
 
-ENV NODE_PATH=/usr/local/lib/node_modules/
-
-RUN npm install -g \
-  "@code-pushup/coverage-plugin@^0.49.0" \
-  "@code-pushup/js-packages-plugin@^0.49.0" \
-  "@code-pushup/lighthouse-plugin@^0.49.0" \
-  "@code-pushup/models@^0.49.0" \
-  "@code-pushup/eslint-config@^0.8.0" \
-  "@code-pushup/eslint-plugin@^0.50.0"
-RUN npm install -g "@code-pushup/cli@^0.50.0"
 RUN npm i -g "https://github.com/ufirstgroup/pushup-ex-audit#master"
 RUN npm install -g "eslint@8.57.0" \
   "@typescript-eslint/eslint-plugin@7.18.0" \
@@ -33,12 +23,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends curl git build-
 	libglu1-mesa-dev libpng-dev libssh-dev unixodbc-dev xsltproc fop libxml2-utils libncurses-dev \
 	openjdk-11-jdk; \
 	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.1; 
-# 	/bin/bash -c 'echo -e "\n\n## Configure ASDF \n. $HOME/.asdf/asdf.sh" >> ~/.bashrc'; \
-#     /bin/bash -c 'echo -e "\n\n## ASDF Bash Completion: \n. $HOME/.asdf/completions/asdf.bash" >> ~/.bashrc';
-	
-# SHELL ["/bin/bash", "-c"]
 
-# Add asdf to PATH, so it can be run in this Dockerfile
 ENV PATH="$PATH:/root/.asdf/bin"
 
 # Add asdf shims to PATH, so installed executables can be run in this Dockerfile
@@ -50,3 +35,9 @@ RUN asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git; \
 	asdf install elixir 1.16.2; \
 	asdf global erlang 26.1.2; \
 	asdf global elixir 1.16.2; 
+
+RUN apt-get update && apt-get install -y --no-install-recommends locales
+RUN export LANG=en_US.UTF-8 \
+    && echo $LANG UTF-8 > /etc/locale.gen \
+    && locale-gen \
+    && update-locale LANG=$LANG
