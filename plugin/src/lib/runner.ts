@@ -19,7 +19,7 @@ export async function executeRunner(): Promise<void>{
 		command: 'mix deps.audit',
 		args: ['--format=json'],
 		cwd: projectPath,
-		ignoreExitCode: false
+		ignoreExitCode: true
 	})
 	if (typeof stdout !== 'object'){
 		stdout = JSON.parse(stdout);
